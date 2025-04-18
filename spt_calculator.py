@@ -8,22 +8,27 @@ def add_pwa_support():
     manifest_url = "manifest.json" # Assurez-vous que le chemin est correct depuis la racine de votre déploiement
     service_worker_url = "service-worker.js" # Assurez-vous que le chemin est correct
 
+# ##
     pwa_html = f"""
-        <link rel="manifest" href="{manifest_url}">
-        <script>
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                    navigator.serviceWorker.register('{service_worker_url}')
-                    .then(function(registration) {
-                        console.log('Service Worker registered with scope:', registration.scope);
-                    })
-                    .catch(function(error) {
-                        console.log('Service Worker registration failed:', error);
-                    });
-                });
-            }
-        </script>
-    """
+    <link rel="manifest" href="{manifest_url}">
+    <script>
+        if ('serviceWorker' in navigator) {{
+            window.addEventListener('load', function() {{
+                navigator.serviceWorker.register('{service_worker_url}')
+                .then(function(registration) {{
+                    console.log('Service Worker registered with scope:', registration.scope);
+                }})
+                .catch(function(error) {{
+                    console.log('Service Worker registration failed:', error);
+                }});
+            }});
+        }}
+    </script>
+"""
+
+
+    # ####
+    
     components.html(pwa_html, height=0)
 
 # Ajouter le support PWA
